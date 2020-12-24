@@ -25,5 +25,19 @@ RSpec.describe 'As a visitor', type: :feature do
 
       expect(page).to have_content(Astronaut.average_age)
     end
+
+    it 'I see all mission each astronaut participated in alphabetical order' do
+      niel = Astronaut.create!(name: 'Niel Armstrong', age: 37, job: 'Commander')
+      buzz = Astronaut.create!(name: 'Buzz Aldrin', age: 32, job: 'Moonwalker')
+      
+      apollo = Mission.create!(title: 'Apollo', time_in_space: 16)
+      gemini = Mission.create!(title: 'Gemini 7', time_in_space: 7)
+      capricorn = Mission.create!(title: 'Capricorn 3', time_in_space: 57)
+
+      visit "/astronauts"
+
+      expect(apollo.title).to appear_before(capricorn.title)
+      expect(capricorn.title).to appear_before(gemini.title)
+    end
   end
 end
