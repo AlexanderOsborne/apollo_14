@@ -34,6 +34,12 @@ RSpec.describe 'As a visitor', type: :feature do
       gemini = Mission.create!(title: 'Gemini 7', time_in_space: 7)
       capricorn = Mission.create!(title: 'Capricorn 3', time_in_space: 57)
 
+      AstronautMission.create!(astronaut_id: niel.id, mission_id: apollo.id)
+      AstronautMission.create!(astronaut_id: buzz.id, mission_id: apollo.id)
+      AstronautMission.create!(astronaut_id: buzz.id, mission_id: gemini.id)
+      AstronautMission.create!(astronaut_id: niel.id, mission_id: gemini.id)
+      AstronautMission.create!(astronaut_id: buzz.id, mission_id: capricorn.id)
+      
       visit "/astronauts"
 
       expect(apollo.title).to appear_before(capricorn.title)

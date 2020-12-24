@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   #Astronauts
   get "/astronauts", to: "astronauts#index"
+
 end
