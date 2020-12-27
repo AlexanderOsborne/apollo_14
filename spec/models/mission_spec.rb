@@ -19,8 +19,7 @@ describe Mission, type: :model do
       AstronautMission.create!(astronaut_id: niel.id, mission_id: gemini.id)
       AstronautMission.create!(astronaut_id: niel.id, mission_id: apollo.id)
 
-      # require 'pry'; binding.pry
-      niel.missions.mission_order
+     expect(Mission.mission_order).to eq([apollo,gemini])
     end
   end
 end

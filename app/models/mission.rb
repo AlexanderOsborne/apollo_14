@@ -4,8 +4,7 @@ class Mission < ApplicationRecord
   
   validates_presence_of :title, :time_in_space
 
-  def mission_order
-    require 'pry'; binding.pry
+  def self.mission_order
     order(:title)
   end
 end
