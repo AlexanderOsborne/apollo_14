@@ -12,7 +12,7 @@ describe Mission, type: :model do
   end
 
   describe "class methods" do
-    it 'self.mission order' do
+    it 'mission_order' do
       niel = Astronaut.create!(name: 'Niel Armstrong', age: 37, job: 'Commander')
       gemini = Mission.create!(title: 'Gemini 7', time_in_space: 7)
       apollo = Mission.create!(title: 'Apollo', time_in_space: 16)
@@ -20,6 +20,16 @@ describe Mission, type: :model do
       AstronautMission.create!(astronaut_id: niel.id, mission_id: apollo.id)
 
      expect(Mission.mission_order).to eq([apollo,gemini])
+    end
+
+    it 'total_time' do
+      niel = Astronaut.create!(name: 'Niel Armstrong', age: 37, job: 'Commander')
+      gemini = Mission.create!(title: 'Gemini 7', time_in_space: 7)
+      apollo = Mission.create!(title: 'Apollo', time_in_space: 16)
+      AstronautMission.create!(astronaut_id: niel.id, mission_id: gemini.id)
+      AstronautMission.create!(astronaut_id: niel.id, mission_id: apollo.id)
+
+     expect(Mission.total_time).to eq(23)
     end
   end
 end

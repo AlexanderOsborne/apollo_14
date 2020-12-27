@@ -5,6 +5,7 @@
   <h3><%=  astronaut.name %></h3>
   Job: <%=  astronaut.job%><br>
   Age: <%=  astronaut.age%><br>
+  Total Mission Time: <%=  astronaut.missions.total_time%><br>
     <% astronaut.missions.mission_order.each do |mission| %>
      Missions: <%=  mission.title %><br>
       <% end %>

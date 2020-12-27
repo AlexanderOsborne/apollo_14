@@ -7,4 +7,8 @@ class Mission < ApplicationRecord
   def self.mission_order
     order(:title)
   end
+
+  def self.total_time
+    sum(:time_in_space)
+  end
 end

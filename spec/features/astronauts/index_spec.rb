@@ -42,5 +42,19 @@ RSpec.describe 'As a visitor', type: :feature do
       expect(apollo.title).to appear_before(gemini.title)
       expect(capricorn.title).to appear_before(gemini.title)
     end
+
+    it 'I see total mission time for each astronaut' do
+      buzz = Astronaut.create!(name: 'Buzz Aldrin', age: 32, job: 'Moonwalker')
+      
+      apollo = Mission.create!(title: 'Apollo', time_in_space: 16)
+      gemini = Mission.create!(title: 'Gemini 7', time_in_space: 7)
+
+      AstronautMission.create!(astronaut_id: buzz.id, mission_id: apollo.id)
+      AstronautMission.create!(astronaut_id: buzz.id, mission_id: gemini.id)
+      
+      visit "/astronauts"
+      
+      expect(page).to have_content(23)
+    end
   end
 end
